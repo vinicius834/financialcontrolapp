@@ -1,0 +1,29 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Financialcontrolapp
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = yield(:head)
+  %body
+    #page
+      #header
+        = render 'layouts/menu'
+      #menu_butons
+        - if user_signed_in?
+          = link_to('New Income', new_income_path, class: 'btn btn-default income_new_button', id: 'id_income_button')
+          = link_to('New Expense', new_expense_path, class: 'btn btn-default expense_new_button', id: 'id_expense_button')
+      #content.container-fluid
+        - if notice.present?
+          %div{ id: "notice", class: "alert alert-success" }
+            = flash[:notice]
+        = yield
+      #footer.bottom
+        %div{ class: "horizontal-line" } 
+        %a{ rel: "license", href: "http://creativecommons.org/licenses/by/4.0/" }
+          %img{ alt:"Creative Commons License", style: "border-width:0", src: "https://i.creativecommons.org/l/by/4.0/80x15.png" }
+        This work is licensed under a 
+        %a{ rel: "license", href: "http://creativecommons.org/licenses/by/4.0/" }
+          Creative Commons Attribution 4.0 International License.

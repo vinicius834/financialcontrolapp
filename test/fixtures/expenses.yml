@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  expiration_date: 2015-02-03
+  value: 1
+  paid: false
+
+two:
+  description: MyString
+  expiration_date: 2015-02-03
+  value: 1
+  paid: false

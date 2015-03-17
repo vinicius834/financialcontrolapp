@@ -1,0 +1,10 @@
+@mixin centralize {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+@mixin panel_size {
+  width: 40%;
+}

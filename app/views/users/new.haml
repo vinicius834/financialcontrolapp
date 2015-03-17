@@ -1,0 +1,12 @@
+%div{ class: "users_div_form" }
+  %div{ class: "users_div_form_panel panel panel-default" }
+    %div{ class: "panel-heading" }
+      %h1{ class: "panel-title" } New User
+    %div{ class: "panel-body" }
+      - if @user.errors.any?
+        %div{ class: "alert-danger alert error_explanation"}
+          %ul
+            - @user.errors.full_messages.each do |message|
+              %li 
+                = message
+      = render 'form'

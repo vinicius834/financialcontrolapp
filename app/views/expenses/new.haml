@@ -1,0 +1,12 @@
+%div{ class: "expenses_div_form" }
+  %div{ class: "expenses_div_form_panel panel panel-default" }
+    %div{ class: "panel-heading" }
+      %h1{ class: "panel-title" } New Expense
+    %div{ class: "panel-body" }
+      - if @expense.errors.any?
+        %div{ class: "alert-danger alert error_explanation"}
+          %ul
+            - @expense.errors.full_messages.each do |message|
+              %li 
+                = message
+      = render 'form'

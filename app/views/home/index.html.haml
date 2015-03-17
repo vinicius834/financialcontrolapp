@@ -1,0 +1,34 @@
+%section.div_lists.container-fluid
+  %div.incomes_div_list
+    %div{ class: "table_list panel panel-default" }
+      %div{ class: "panel-heading" }
+        %h1{ class: "panel-title" } Incomes
+      %div{ class: "panel-body" } 
+        %div{class: "form-inline" }
+          %label 
+            From:
+          %input{ type: "date", id: "input_income_from_date", class: "form-control", name: "from_date_income"}
+          %label 
+            To:
+          %input{ type: "date", id: "input_income_to_date", class: "form-control", name: "to_date_income" }
+          %input{ type: "button", id: "income_filter_button", class: "btn btn-default", value: "Filter" }
+          %a{ id: "all_incomes_link", href: "javascript:void(0)"} All Incomes
+        %div.income_list_content
+          = render 'incomes/income_list'
+     
+  %div.expenses_div_list
+    %div{ class: "table_list panel panel-default" }
+      %div{ class: "panel-heading" }
+        %h1{ class: "panel-title" } Expenses
+      %div{ class: "panel-body" } 
+        %div{class: "form-inline" }
+          %label 
+            From:
+          %input{ type: "date", id: "input_expense_from_date", class: "form-control", name: "from_date_expense" }
+          %label 
+            To:
+          %input{ type: "date", id: "input_expense_to_date", class: "form-control", name: "to_date_expense" }
+          %input{ type: "button", id: "expense_filter_button", class: "btn btn-default", value: "Filter" }
+          %a{ id: "all_expenses_link", href: "javascript:void(0)"} All Expenses
+        %div.expense_list_content
+          = render 'expenses/expense_list'  

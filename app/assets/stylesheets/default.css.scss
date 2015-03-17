@@ -1,0 +1,74 @@
+@import 'mixins';
+
+body  {
+  @include centralize;
+    background-color: #eee;
+}
+
+#page {
+  width: 100%;
+    
+}
+
+#content {
+  height: 700px;
+  overflow:auto;
+  
+}
+
+#menu_butons {
+  @include centralize;
+}
+
+#footer {
+  text-align: center;
+}
+
+#id_income_button {
+  margin: 10px;
+}
+
+#id_expense_button {
+  margin: 10px;
+}
+
+#notice {
+  position: relative;
+  left:30%;
+  @include panel_size;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.horizontal-line {
+  clear:both;
+  width:100%;
+  background-color:#d1d1d1;
+  height:1px;
+    margin-top:20px;
+  margin-bottom:20px;
+      
+}
+
+li { list-style: none; }
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}

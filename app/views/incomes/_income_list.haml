@@ -1,0 +1,22 @@
+- if @incomes.blank?
+  %p No income found. 
+- else
+  %div{ class: "income_list" }
+    %ul{ class: "list-group" }
+      - @incomes.each do |income|  
+        %li{ class: "item_list list-group-item" }
+          %p
+            %label Description: 
+            %span= income.description
+          %p
+            %label Date: 
+            %span= income.date
+          %p
+            %label Value: 
+            %span= number_to_currency(income.value, separator: ",", delimiter: ".")
+          %p
+            = link_to('Edit', edit_income_path(income), class: "btn btn-default")
+            = link_to('Delete', income_path(income), method: :delete, class: "btn btn-default", data: {confirm: 'Delete the income?'})  
+  %div{ class: "total_income_div" }
+    %label Total: 
+    %span= number_to_currency(@total_incomes, separator: ",", delimiter: ".")

@@ -1,0 +1,29 @@
+@import 'mixins';
+
+.incomes_div_list {
+  margin: 5px;
+  width: 610px;
+}
+
+.incomes_div_form {
+  @include centralize;
+}
+
+.incomes_div_form_panel {
+  @include panel_size;
+}
+
+.item_list:hover {
+  background: #eee;
+  cursor: default;
+}
+
+.income_list {
+  margin-top: 30px;
+  height: 450px;
+  overflow: auto;
+}
+
+.total_income_div {
+	margin-top: 20px;
+}

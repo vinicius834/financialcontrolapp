@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.users_div_form {
+  @include centralize;
+}
+
+.users_div_form_panel {
+  @include panel_size;
+}

@@ -1,0 +1,12 @@
+@import 'mixins';
+
+.table_list {
+  width:100%;
+  height: 650px;
+}
+
+.div_lists {
+  @include centralize;
+  display: flex;
+  flex-flow: row wrap;
+}

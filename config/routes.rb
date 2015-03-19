@@ -7,9 +7,10 @@ Rails.application.routes.draw do
     get 'search_between_dates', on: :collection 
     get 'all',                  on: :collection 
   end
-  resources :users,         only: [:show, :new, :create, :edit, :update, :destroy]
-  resource  :user_sessions, only: [:create, :new, :destroy], path: '/auth'
-  resource :confirmation,   only: [:show]
+  resources :users,           only: [:show, :new, :create, :edit, :update, :destroy]
+  resource  :user_sessions,   only: [:create, :new, :destroy], path: '/auth'
+  resource :confirmation,     only: [:show]
+  resources :password_resets, only: [:new, :create, :edit, :update] 
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

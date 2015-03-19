@@ -1,9 +1,9 @@
 = form_for @expense do |f|
   %div{ class: "form-group" } 
-    = f.text_field(:description, class: 'form-control', placeholder: 'Description', required: true, autofocus: true)
-  %div{ class: "form-group input-group input-group" }
+    = f.text_field(:description, class: 'form-control', minlength: 3, placeholder: 'Description', required: true, autofocus: true)
+  %div{ class: "form-group input-group" }
     %span{ class: "input-group-addon"} $
-    = f.text_field(:value, class: 'form-control currency', placeholder: 'Value', autofocus: true)
+    = f.text_field(:value, class: 'form-control currency', minlength: 3, placeholder: 'Value', autofocus: true)
   %div{ class: "form-group"}
     = f.date_field(:expiration_date, class: 'form-control', placeholder: 'Expiration Date', caption: 'Expiration Date', required: true)
   %div{ class: "form-group" }  

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   scope :confirmed, -> { where.not(confirmed_date: nil) }
   
   before_create do |user|
-    user.confirmation_token = SecureRandom.urlsafe_base64
+    user.confirmation_token = generate_token
   end
 
   def confirm!
@@ -26,5 +26,16 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, password)
     confirmed.find_by(email: email).try(:authenticate, password)
+  end
+    
+  def send_password_reset  
+    self. password_reset_token = generate_token
+    self.password_reset_sent_at = Time.zone.now  
+    save!  
+    Mailer.password_reset(self).deliver  
+  end 
+    
+  def generate_token
+    SecureRandom.urlsafe_base64  
   end
 end

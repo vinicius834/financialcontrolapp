@@ -12,4 +12,14 @@ class Mailer < ActionMailer::Base
       subject: 'Confirm email Financial Control App'
     })  
   end
+    
+  def password_reset(user) 
+    @user = user
+    @reset_link = edit_password_reset_url(@user.password_reset_token    )
+    mail({
+      to: user.email,
+      bcc: ['password resets <passwordresets@financialcontrolapp.com>'],
+      subject: 'Password reset'
+    }) 
+  end 
 end

@@ -2,7 +2,7 @@
 
 body  {
   @include centralize;
-    background-color: #eee;
+  background-color: #eee;
 }
 
 #page {
@@ -13,7 +13,6 @@ body  {
 #content {
   height: 700px;
   overflow:auto;
-  
 }
 
 #menu_butons {
@@ -34,8 +33,8 @@ body  {
 
 #notice {
   position: relative;
-  left:30%;
-  @include panel_size;
+  //left:30%;
+  //@include panel_size;
 }
 
 .navbar-brand {

@@ -13,21 +13,21 @@ class IncomesController < ApplicationController
 
   def create
     @income = Income.new(income_params)
-    @income.user = User.first
+    @income.user = current_user
     @income.save ? redirect_to(root_path) : render(:new)
   end
 
   def edit
-  	@income = User.first.incomes.find(params[:id])
+  	@income = current_user.incomes.find(params[:id])
   end
 
   def update
-    @income = User.first.incomes.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
     @income.update(income_params) ? redirect_to(root_path) : render(:edit)
   end
 
   def destroy
-    @income = User.first.incomes.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
     @income.destroy
     redirect_to root_path
   end

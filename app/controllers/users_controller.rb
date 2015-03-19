@@ -19,11 +19,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	
+    @user = current_user
   end
 
   def update
-    
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'Profile updated with success.'
+    else
+      render action: :edit
+    end
   end
 
   def destroy

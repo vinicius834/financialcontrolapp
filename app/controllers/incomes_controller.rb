@@ -3,7 +3,6 @@ class IncomesController < ApplicationController
     only: [:new, :create, :edit, :update, :destroy]
     
   before_action only: [:create, :update] do
-    puts income_params[:value]
     income_params[:value] = format_value_to_save(income_params[:value])
   end
 
@@ -36,19 +35,12 @@ class IncomesController < ApplicationController
     from = params[:from_date_income]
     to = params[:to_date_income] 
     @incomes = find_incomes_by_range_dates(from, to)
-    @total_incomes = incomes_total_calculate(@incomes) unless @income.blank?
-         
-    respond_to do |format|
-      format.html { render partial: 'income_list' }    
-    end
+    $total_incomes = incomes_total_calculate(@incomes) unless @incomes.blank?
   end
 
   def all
     @incomes = current_user.incomes 
-    @total_incomes = incomes_total_calculate(@incomes)
-    respond_to do |format|
-      format.html { render partial: 'income_list' }
-    end
+    $total_incomes = incomes_total_calculate(@incomes)
   end
 
   private 
@@ -65,9 +57,9 @@ class IncomesController < ApplicationController
     if (from.empty? && to.empty?)
       []
     elsif (!from.empty? && to.empty?)
-      current_user.incomes.where("date > :date", { date: Date.parse(from) })
+      current_user.incomes.where("date >= :from", { from: Date.parse(from) })
     elsif (from.empty? && !to.empty?)
-      current_user.incomes.where("date < :date", { date: Date.parse(to) })
+      current_user.incomes.where("date <= :to", { to: Date.parse(to) })
     else
       current_user.incomes.where(date: date_range(from, to))  
     end

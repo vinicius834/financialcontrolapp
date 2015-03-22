@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  $(".delete_expense_link").click(function(event){
+  /*$(".delete_expense_link").click(function(event){
     event.preventDefault();
     if(confirm("Are you sure?")) {
       var url = $(this).attr("href");
@@ -31,8 +31,8 @@ $( document ).ready(function() {
     $.get(url, { from_date_expense: from_date , to_date_expense: to_date }, function(result) {
       $(".expense_list_content").html(result);
     });
-  });
-    
+  });*/
+   /* 
   $("#all_expenses_link").click(function(){
     var url = "expenses/all";
     $.get(url, function(result) {
@@ -40,5 +40,5 @@ $( document ).ready(function() {
       $("#input_expense_from_date").val('');
       $("#input_expense_to_date").val('');
     });
-  });
+  });*/
 });

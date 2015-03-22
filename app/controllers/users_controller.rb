@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      session[:full_name]  = params[:user][:full_name]
       redirect_to root_path, notice: 'Profile updated with success.'
     else
       render action: :edit

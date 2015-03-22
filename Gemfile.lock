@@ -56,6 +56,11 @@ GEM
     erubis (2.7.0)
     execjs (2.2.2)
     fssm (0.2.10)
+    gon (5.2.3)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     haml (4.0.6)
       tilt
     haml-rails (0.8.2)
@@ -118,6 +123,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    request_store (1.1.0)
     rspec-core (3.2.0)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -183,6 +189,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   compass-rails
+  gon
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails

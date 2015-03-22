@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".delete_income_link").click(function(event){
+  /*$(".delete_income_link").click(function(event){
     event.preventDefault();
     if(confirm("Are you sure?")) {
       var url = $(this).attr("href");
@@ -7,9 +7,9 @@ $(document).ready(function() {
         location.reload(true);
       });
     }
-  });
+  });*/
     
-  $("#income_filter_button").click(function(){
+  /*$("#income_filter_button").click(function(){
     var url = "";
     var from_date = $("#input_income_from_date").val();
     var to_date = $("#input_income_to_date").val();
@@ -29,16 +29,19 @@ $(document).ready(function() {
     url = "incomes/search_between_dates/"
     
     $.get(url, { from_date_income: from_date, to_date_income: to_date }, function(result) {
+      alert(result);
       $(".income_list_content").html(result);
+        document.getElementsByClassName ("result_div").innerHTML;
+      //$(".result_div").html("#{escape_javascript(= render(partial: 'home/balance'))}");
     });
-  });
+  });*/
     
-  $("#all_incomes_link").click(function(){
+ /* $("#all_incomes_link").click(function(){
     var url = "incomes/all";
     $.get(url, function(result) {
       $(".income_list_content").html(result);
       $("#input_income_from_date").val('');
       $("#input_income_to_date").val('');
     });
-  });
+  });*/
 });

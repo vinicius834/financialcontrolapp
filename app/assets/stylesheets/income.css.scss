@@ -1,8 +1,8 @@
 @import 'mixins';
 
 .incomes_div_list {
-  margin: 5px;
-  width: 610px;
+  margin: 5px 5px 5px 0px;
+  width: 620px;
 }
 
 .incomes_div_form {
@@ -25,5 +25,6 @@
 }
 
 .total_income_div {
-	margin-top: 20px;
+  margin-top: 20px;
+  font-size: 20px;
 }

@@ -1,0 +1,5 @@
+:plain
+  var result_search = $("#{escape_javascript(render(partial: 'income_list'))}");
+  var result_balance = $("#{escape_javascript(render(partial: 'home/balance'))}");
+  $(".income_list_content").html(result_search);
+  $(".div_result_value").html(result_balance);

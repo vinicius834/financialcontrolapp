@@ -32,23 +32,15 @@ class ExpensesController < ApplicationController
   end
     
   def search_between_dates
-    puts params
     from = params[:from_date_expense]
     to = params[:to_date_expense]
     @expenses = find_expenses_by_range_dates(from, to) 
-    @total_expenses = expenses_total_calculate(@expenses) unless @expenses.blank?
-      
-    respond_to do |format|
-      format.html { render partial: 'expense_list' }    
-    end
+    $total_expenses = expenses_total_calculate(@expenses) unless @expenses.blank?
   end
 
   def all
     @expenses = current_user.expenses 
-    @total_expenses = expenses_total_calculate(@expenses)
-    respond_to do |format|
-      format.html { render partial: 'expense_list' }
-    end
+    $total_expenses = expenses_total_calculate(@expenses)
   end
   
   private
@@ -65,11 +57,11 @@ class ExpensesController < ApplicationController
     if (from.empty? && to.empty?)
       []
     elsif (!from.empty? && to.empty?)
-      current_user.expenses.where("expiration_date > :expiration_date", 
-          { expiration_date: Date.parse(from) })
+      current_user.expenses.where("expiration_date >= :from", 
+          { from: Date.parse(from) })
     elsif (from.empty? && !to.empty?)
-      current_user.expenses.where("expiration_date < :expiration_date", 
-          { expiration_date: Date.parse(to) })
+      current_user.expenses.where("expiration_date <= :to", 
+          { to: Date.parse(to) })
     else
       current_user.expenses.where(expiration_date: date_range(from, to))  
     end

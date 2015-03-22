@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   validates_presence_of :email, :full_name
   validates_uniqueness_of :email, message: 'already exists.'
+  validates :email, length: { in: 5..70 }
+  validates :full_name, length: { in: 2..70 }
   
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy

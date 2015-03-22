@@ -13,10 +13,10 @@
             %span= income.date
           %p
             %label Value: 
-            %span= number_to_currency(income.value, separator: ",", delimiter: ".")
+            %span= to_currency(income.value)
           %p
             = link_to('Edit', edit_income_path(income), class: "btn btn-default")
             = link_to('Delete', income_path(income), method: :delete, class: "btn btn-default", data: {confirm: 'Delete the income?'})  
   %div{ class: "total_income_div" }
     %label Total: 
-    %span= number_to_currency(@total_incomes, separator: ",", delimiter: ".")
+    %span= number_to_currency($total_incomes, separator: ",", delimiter: ".")

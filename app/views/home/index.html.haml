@@ -1,34 +1,35 @@
-%section.div_lists.container-fluid
+%section{ class: "div_lists container-fluid" }
   %div.incomes_div_list
     %div{ class: "table_list panel panel-default" }
       %div{ class: "panel-heading" }
         %h1{ class: "panel-title" } Incomes
       %div{ class: "panel-body" } 
-        %div{class: "form-inline" }
-          %label 
-            From:
-          %input{ type: "date", id: "input_income_from_date", class: "form-control", name: "from_date_income"}
-          %label 
-            To:
-          %input{ type: "date", id: "input_income_to_date", class: "form-control", name: "to_date_income" }
-          %input{ type: "button", id: "income_filter_button", class: "btn btn-default", value: "Filter" }
-          %a{ id: "all_incomes_link", href: "javascript:void(0)"} All Incomes
+        = form_tag(search_between_dates_incomes_path, method: :get, remote: true) do
+          %div{class: "form-inline" }
+            = label_tag(:input_income_from_date, "From") 
+            = text_field_tag(:from_date_income,  params[:from_date_income], type: "date", id: :input_income_from_date, class: "form-control")
+            = label_tag(:input_income_to_date, "To") 
+            = text_field_tag(:to_date_income,  params[:to_date_income], type: :date, id: :input_income_to_date, class: "form-control")
+            = submit_tag("Filter", class: "btn btn-default")
+            = link_to('All Incomes', all_incomes_path, remote: true, id: :all_incomes_link)
         %div.income_list_content
           = render 'incomes/income_list'
      
-  %div.expenses_div_list
+  %div{ class: "expenses_div_list" }
     %div{ class: "table_list panel panel-default" }
       %div{ class: "panel-heading" }
         %h1{ class: "panel-title" } Expenses
       %div{ class: "panel-body" } 
-        %div{class: "form-inline" }
-          %label 
-            From:
-          %input{ type: "date", id: "input_expense_from_date", class: "form-control", name: "from_date_expense" }
-          %label 
-            To:
-          %input{ type: "date", id: "input_expense_to_date", class: "form-control", name: "to_date_expense" }
-          %input{ type: "button", id: "expense_filter_button", class: "btn btn-default", value: "Filter" }
-          %a{ id: "all_expenses_link", href: "javascript:void(0)"} All Expenses
+        = form_tag(search_between_dates_expenses_path, method: :get, remote: true) do
+          %div{class: "form-inline" }
+            = label_tag(:input_income_from_date, "From") 
+            = text_field_tag(:from_date_expense, params[:from_date_expense], type: "date", id: :input_expense_to_date, class: "form-control")
+            %label 
+              To:
+            = text_field_tag(:to_date_expense, params[:to_date_expense], type: "date", id: :input_expense_to_date, class: "form-control")
+            = submit_tag("Filter", class: "btn btn-default")
+            = link_to('All Expenses', all_expenses_path, remote: true, id: :all_expenses_link)
         %div.expense_list_content
           = render 'expenses/expense_list'  
+%section{ class: "div_result_value container-fluid" }
+  = render 'home/balance'

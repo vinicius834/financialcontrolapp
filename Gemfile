@@ -41,6 +41,7 @@ gem "haml-rails"
 gem 'bootstrap-sass'
 gem 'compass-rails'
 gem 'money-rails'
+
 group :development, :test do 
   gem 'rspec-rails'
   gem 'capybara'

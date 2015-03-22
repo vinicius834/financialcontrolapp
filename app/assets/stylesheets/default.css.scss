@@ -1,47 +1,53 @@
 @import 'mixins';
 
+html {
+  overflow: auto;  
+}
+
 body  {
-  @include centralize;
+  position: absolute;
   background-color: #eee;
+  height:100%; 
+  width: 100%;
 }
 
 #page {
-  width: 100%;
-    
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
 }
 
 #content {
-  height: 700px;
+  height: 745px;
   overflow:auto;
 }
 
 #menu_butons {
   @include centralize;
+  margin-bottom: 5px;
 }
 
 #footer {
+  position: relative;
+  margin-top: 20px;
   text-align: center;
 }
 
 #id_income_button {
-  margin: 10px;
+ margin-right: 5px;
 }
 
 #id_expense_button {
-  margin: 10px;
+  margin-left: 5px;
 }
 
 #notice {
   position: relative;
-  //left:30%;
-  //@include panel_size;
 }
 
 .navbar-brand {
   font-size: 25px;
-  position: absolute;
-  width: 100%;
-  text-align: center;
+  position: relative;
 }
 
 .horizontal-line {
@@ -49,9 +55,8 @@ body  {
   width:100%;
   background-color:#d1d1d1;
   height:1px;
-    margin-top:20px;
-  margin-bottom:20px;
-      
+  margin-top:20px;
+  margin-bottom:10px;     
 }
 
 li { list-style: none; }

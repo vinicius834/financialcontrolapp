@@ -9,6 +9,6 @@
       = form_tag(password_resets_path, method: :post) do  
         %div{ class: "form-group input-group" }
           %span{ class: "input-group-addon" } @
-          = text_field_tag(:email, params[:email], type: "email", class: "form-control", placeholder: "Email", minlegth: 5 maxlength: 70, required: true, autofocus: true)
+          = text_field_tag(:email, params[:email], type: "email", class: "form-control", placeholder: "Email", minlegth: 5, maxlength: 70, required: true, autofocus: true)
         = submit_tag("Reset Password", class: "btn btn-default")
         = link_to("Cancel", new_user_sessions_path, class: "btn btn-default")

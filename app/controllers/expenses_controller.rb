@@ -12,21 +12,21 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-    @expense.user = User.first
+    @expense.user = current_user
     @expense.save ? redirect_to(root_path) : render(:new)
   end
 
   def edit
-    @expense = User.first.expenses.find(params[:id])
+    @expense = current_user.expenses.find(params[:id])
   end
 
   def update
-    @expense = User.first.expenses.find(params[:id])
+    @expense = current_user.expenses.find(params[:id])
     @expense.update(expense_params) ? redirect_to(root_path) : render(:edit)
   end
 
   def destroy
-    @expense = User.first.expenses.find(params[:id])
+    @expense = current_user.expenses.find(params[:id])
     @expense.destroy
     redirect_to root_path
   end
@@ -35,12 +35,20 @@ class ExpensesController < ApplicationController
     from = params[:from_date_expense]
     to = params[:to_date_expense]
     @expenses = find_expenses_by_range_dates(from, to) 
-    $total_expenses = expenses_total_calculate(@expenses) unless @expenses.blank?
+    $total_expenses = expenses_total_calculate(@expenses)
+    @balance = calulate_balance($total_incomes, $total_expenses)
+    respond_to do |format|
+      format.js {render :search_between_dates}
+    end
   end
 
   def all
     @expenses = current_user.expenses 
     $total_expenses = expenses_total_calculate(@expenses)
+    @balance = calulate_balance($total_incomes, $total_expenses)
+    respond_to do |format|
+      format.js {render :all}
+    end
   end
   
   private

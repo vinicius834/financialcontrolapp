@@ -1,12 +1,12 @@
 %div.result_div
   %label Balance:
-  - if (($total_incomes - $total_expenses) < 0)
+  - if (@balance < 0)
     = image_tag("balance_down.png", height: '20', width: '20')
     %span{ class: "red_class" }
-      = to_currency($total_incomes - $total_expenses)
+      = to_currency(@balance)
   - else
     = image_tag("balance_up.png", height: '20', width: '20')
     %span{ class: "blue_class" }
-      = to_currency($total_incomes - $total_expenses)
+      = to_currency(@balance)
   
     

@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     user_session.destroy
-    redirect_to root_path
+    redirect_to new_user_sessions_path
   end
 end

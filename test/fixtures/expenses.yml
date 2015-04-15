@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyString
+energy:
+  description: energy
   expiration_date: 2015-02-03
-  value: 1
+  value_cents: 74.54
   paid: false
+  user_id: 1
 
-two:
-  description: MyString
-  expiration_date: 2015-02-03
-  value: 1
+credit_card:
+  description: credit card
+  expiration_date: 2015-02-06
+  value_cents: 150.21
   paid: false
+  user_id: 1

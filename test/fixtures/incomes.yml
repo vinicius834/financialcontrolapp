@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyString
+salary:
+  id: 1
+  description: salary
   date: 2015-02-03
-  value: 1
+  value_cents: 4500
+  user_id: 1
 
-two:
-  description: MyString
-  date: 2015-02-03
-  value: 1
+bonus:
+  id: 2
+  description: bonus
+  date: 2015-02-16
+  value_cents: 951.23
+  user_id: 1

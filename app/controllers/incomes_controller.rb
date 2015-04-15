@@ -1,4 +1,5 @@
 class IncomesController < ApplicationController
+  include CurrencyHelper
   before_action :require_authentication, 
     only: [:new, :create, :edit, :update, :destroy]
     
@@ -11,8 +12,7 @@ class IncomesController < ApplicationController
   end
 
   def create
-    @income = Income.new(income_params)
-    @income.user = current_user
+    @income = current_user.incomes.build(income_params)
     @income.save ? redirect_to(root_path) : render(:new)
   end
 
@@ -35,12 +35,20 @@ class IncomesController < ApplicationController
     from = params[:from_date_income]
     to = params[:to_date_income] 
     @incomes = find_incomes_by_range_dates(from, to)
-    $total_incomes = incomes_total_calculate(@incomes) unless @incomes.blank?
+    $total_incomes = incomes_total_calculate(@incomes)
+    @balance = calulate_balance($total_incomes, $total_expenses)
+    respond_to do |format|
+      format.js {render :search_between_dates}
+    end
   end
 
   def all
     @incomes = current_user.incomes 
     $total_incomes = incomes_total_calculate(@incomes)
+    @balance = calulate_balance($total_incomes, $total_expenses)
+    respond_to do |format|
+      format.js {render :all}
+    end
   end
 
   private 

@@ -22,20 +22,17 @@ class ApplicationController < ActionController::Base
   end
     
   def format_value_to_save(value)
-    if value && !value.empty?
-      value.gsub!(/[\.\,]/, '').insert(-3, '.')  
-    end
+    value.gsub!(/[\.\,]/, '').insert(-3, ".") if (value && value.instance_of?(String) && !value.empty? && value.match(/[\.\,]/))
+
   end
-    
-  def format_value_to_save(value)
-    if value && !value.empty?
-      value.gsub!(/[\.\,]/, '').insert(-3, '.')  
-    end
-  end
-    
+  
   def date_range(from_date, to_date)
     from_date = Date.parse(from_date)
     to_date =  Date.parse(to_date)
     from_date..to_date
+  end
+  
+  def calulate_balance(total_incomes, total_expense)
+    total_incomes - total_expense   
   end
 end

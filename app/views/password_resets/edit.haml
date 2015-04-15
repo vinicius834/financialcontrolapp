@@ -13,6 +13,6 @@
         %div{ class: "form-group" }
           = f.password_field(:password, class: 'form-control', placeholder: 'Password', minlength: 3, maxlength: 15, required: true, autofocus: true) 
         %div{ class: "form-group"}
-          = f.password_field(:password_confirmation, class: 'form-control', placeholder: 'Password Confirmation', minlength: 3, maxlength: 15,, required: true)
+          = f.password_field(:password_confirmation, class: 'form-control', placeholder: 'Password Confirmation', minlength: 3, maxlength: 15, required: true)
         = submit_tag("Update Password", class: "btn btn-default")
         = link_to("Cancel", new_user_sessions_path, class: "btn btn-default")

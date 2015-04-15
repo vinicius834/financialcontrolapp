@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
+  EMAIL_REGEXP = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  
   validates_presence_of :email, :full_name
   validates_uniqueness_of :email, message: 'already exists.'
-  validates :email, length: { in: 5..70 }
+  validates :email, length: { in: 6..70 }
   validates :full_name, length: { in: 2..70 }
+  validates :password, presence: { on: create }, length: { in: 3..10, allow_blank: true }
+  validates_format_of  :email, with: EMAIL_REGEXP
   
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy
@@ -34,7 +38,7 @@ class User < ActiveRecord::Base
     self. password_reset_token = generate_token
     self.password_reset_sent_at = Time.zone.now  
     save!  
-    Mailer.password_reset(self).deliver  
+    UserMailer.password_reset(self).deliver  
   end 
     
   def generate_token

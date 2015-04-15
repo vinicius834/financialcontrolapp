@@ -6,4 +6,5 @@ class Income < ActiveRecord::Base
   monetize :value_cents  
   
   belongs_to :user
+  validates :user, presence: true, allow_nil: false, allow_blank: false
 end

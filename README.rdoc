@@ -3,4 +3,4 @@
 This is an application made to study the rails. 
 It is free to modify. 
 The concepts used was based on the book Ruby on Rails: coloque sua aplicação web nos trilhos.
-(https://cloud.githubusercontent.com/assets/4042768/7151272/e3d98ed8-e2fd-11e4-9228-cdfa570189c0.png)
+![alt tag](https://cloud.githubusercontent.com/assets/4042768/7151272/e3d98ed8-e2fd-11e4-9228-cdfa570189c0.png)

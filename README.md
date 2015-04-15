@@ -1,4 +1,4 @@
-== README
+## Financial Control App
 
 This is an application made to study the rails. 
 It is free to modify. 

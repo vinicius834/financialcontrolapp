@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include CurrencyHelper
   delegate :current_user, :user_signed_in?, to: :user_session
   helper_method :current_user, :user_signed_in?
  

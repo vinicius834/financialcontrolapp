@@ -1,12 +1,9 @@
 class User < ActiveRecord::Base
   EMAIL_REGEXP = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   
-  validates_presence_of :email, :full_name
-  validates_uniqueness_of :email, message: 'already exists.'
-  validates :email, length: { in: 6..70 }
-  validates :full_name, length: { in: 2..70 }
+  validates :email, presence: true,  format: {with: EMAIL_REGEXP}, uniqueness: {message: 'already exists.'}, length: { in: 6..70 }
+  validates :full_name, length: { in: 2..70 }, presence: true
   validates :password, presence: { on: create }, length: { in: 3..10, allow_blank: true }
-  validates_format_of  :email, with: EMAIL_REGEXP
   
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy

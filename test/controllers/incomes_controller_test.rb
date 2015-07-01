@@ -1,16 +1,16 @@
 class IncomesControllerTest < ActionController::TestCase
-  
-  setup do 
+
+  setup do
     @vinicius = users(:vinicius)
     @income = incomes(:salary)
     login
   end
-  
+
   teardown do
     @vinicius = nil
     @user_session.destroy
   end
-  
+
   test "Must return an empty income and render new template" do
     get(:new)
     assert assigns(:income)

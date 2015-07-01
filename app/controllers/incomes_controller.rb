@@ -30,12 +30,12 @@ class IncomesController < ApplicationController
     @income.destroy
     redirect_to root_path
   end
-    
+
   def search_between_dates
     from = params[:from_date_income]
     to = params[:to_date_income] 
-    @incomes = find_incomes_by_range_dates(from, to)
-    $total_incomes = incomes_total_calculate(@incomes)
+    @incomes =  Income.find_incomes_by_range_dates(current_user, from, to)
+    $total_incomes = Income.incomes_total_calculate(@incomes)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :search_between_dates}
@@ -44,32 +44,16 @@ class IncomesController < ApplicationController
 
   def all
     @incomes = current_user.incomes 
-    $total_incomes = incomes_total_calculate(@incomes)
+    $total_incomes = Income.incomes_total_calculate(@incomes)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :all}
     end
   end
 
-  private 
-  
+  private
+
   def income_params
     params.require(:income).permit(:description, :value, :date)
-  end
-
-  def incomes_total_calculate(incomes)
-    incomes.inject(0) { |total, income| total + income.value } 
-  end
-    
-  def find_incomes_by_range_dates(from, to)
-    if (from.empty? && to.empty?)
-      []
-    elsif (!from.empty? && to.empty?)
-      current_user.incomes.where("date >= :from", { from: Date.parse(from) })
-    elsif (from.empty? && !to.empty?)
-      current_user.incomes.where("date <= :to", { to: Date.parse(to) })
-    else
-      current_user.incomes.where(date: date_range(from, to))  
-    end
   end
 end

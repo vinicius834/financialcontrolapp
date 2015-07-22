@@ -33,17 +33,8 @@ class CreateUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
-      #
-=begin
-      t.string :full_name
-      t.string :email
-      t.string :password
-      t.index :email, unique: true
-      t.timestamps
-=end 
     end
 
     add_index :users, :email,                unique: true

@@ -5,7 +5,6 @@ class CreateExpenses < ActiveRecord::Migration
       t.date :expiration_date
       t.money :value
       t.boolean :paid
-      
       t.timestamps
     end
   end

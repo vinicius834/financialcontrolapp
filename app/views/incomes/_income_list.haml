@@ -3,7 +3,7 @@
 - else
   %div{ class: "income_list" }
     %ul{ class: "list-group" }
-      - @incomes.each do |income|  
+      - @incomes.each do |income|
         %li{ class: "item_list list-group-item" }
           %p
             %label Description: 
@@ -19,4 +19,4 @@
             = link_to('Delete', income_path(income), method: :delete, class: "btn btn-default", data: {confirm: 'Delete the income?'})  
   %div{ class: "total_income_div" }
     %label Total: 
-    %span= number_to_currency($total_incomes, separator: ",", delimiter: ".")
+    %span= to_currency($total_incomes)

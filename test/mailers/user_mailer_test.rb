@@ -2,14 +2,26 @@ require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
   tests UserMailer
-  
-  test "send email to confirmation" do
-    user = users(:vinicius)
 
-    email = UserMailer.confirmation_email(user).deliver
-    
-    assert_not ActionMailer::Base.deliveries.empty?, "E-mail not delivery"
-    assert_equal [user.email], email.to
-    assert_equal "Confirm email Financial Control App", email.subject
+  def setup
+    @user = users(:vinicius)
+  end
+
+  test "email sent after creating the user" do
+    assert_not_nil confirmation_mail
+  end
+
+  test 'send confirmation instructions to the user email' do
+    assert_equal [@user.email], confirmation_mail.to
+  end
+
+  test 'confirmation instructions from configuration' do
+    assert_equal ['signups@financialcontrolapp.com'], confirmation_mail.from
+  end
+
+  private
+
+  def confirmation_mail
+    @user.send_confirmation_instructions
   end
 end

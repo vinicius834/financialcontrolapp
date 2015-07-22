@@ -1,0 +1,21 @@
+%div{ class: "login_div" }
+  %div{ class: "panel panel-default login_panel" }
+    %div{ class: "panel-heading" } 
+      %h1{ class: "panel-title" } Log in
+    %div{ class: "panel-body" } 
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %div{ class: "form-group input-group" }
+          %span{ class: "input-group-addon" } @
+          = f.text_field(:email, type: "email", class: 'form-control', placeholder: 'Email', minlength: 5, maxlength: 70, required: true, autofocus: true)
+
+        %div{ class: "form-group" }
+          = f.password_field(:password, class: 'form-control', placeholder: 'Password', minlength: 3, maxlength: 15, required: true,  autocomplete: "off" )
+
+        - if devise_mapping.rememberable?
+          %div.checkbox
+            = f.label :checkbox do
+              = f.check_box :remember_me
+              %span Remember me
+        %div{ class: "form-group" }
+          = f.submit(class: 'btn btn-default', value: 'Log in')
+      = render "devise/shared/links"

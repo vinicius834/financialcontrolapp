@@ -1,0 +1,14 @@
+%div{ class: "password_reset_sent_div_form" }
+  %div{ class: "password_reset_sent_div_form_panel panel panel-default" }
+    %div{ class: "panel-heading" }
+      %h1{ class: "panel-title" }Resend confirmation instructions
+    %div{ class: "panel-body" }
+      = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        %div{ class: "form-group input-group" }
+          %span{ class: "input-group-addon" } @
+          = f.email_field(:email, class: "form-control", placeholder: "Email", autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email))
+        %div{ class: "form-group"}
+          = f.submit(class: "btn btn-default", value: "Resend confirmation instructions")
+
+      = render "devise/shared/links"

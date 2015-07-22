@@ -1,11 +1,10 @@
 class ExpensesController < ApplicationController
-  before_action :require_authentication, 
-    only: [:new, :create, :edit, :update, :destroy]
-  
+  before_action :authenticate_user!
+
   before_action only: [:create, :update] do
     expense_params[:value] = format_value_to_save(expense_params[:value])
   end
-  
+
   def new
     @expense = Expense.new
   end
@@ -30,7 +29,7 @@ class ExpensesController < ApplicationController
     @expense.destroy
     redirect_to root_path
   end
-    
+
   def search_between_dates
     from = params[:from_date_expense]
     to = params[:to_date_expense]
@@ -56,9 +55,4 @@ class ExpensesController < ApplicationController
   def expense_params
     params.require(:expense).permit(:description, :value, :expiration_date, :paid)
   end
-=begin
-  def expenses_total_calculate(expenses)
-    expenses.inject(0) { |total, expense| total + expense.value } 
-  end
-=end
 end

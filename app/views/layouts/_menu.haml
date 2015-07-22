@@ -12,27 +12,25 @@
       %ul{ class: "nav navbar-nav navbar-right" }
         - unless user_signed_in?
           %li
-            %a{ href: "/users/new" } 
+            %a{ href: "/users/sign_up" } 
               %span{ class: "glyphicon glyphicon-user" }
               %span Sign Up
         - unless user_signed_in?
           %li
-            %a{ href: "/auth/new" }
+            %a{ href: "/users/sign_in" }
               %span{ class: "glyphicon glyphicon-log-in" }  
               %span Login
         - if user_signed_in?
           %li{ class: "dropdown"}
             %a{ class: "dropdown-toggle", data: { toggle: "dropdown" }, href: "#user" }
-              %span{ class: "caret" }  
-              %span= session[:full_name].upcase
-            %ul{ class: "dropdown-menu" } 
+              %span{ class: "caret" }
+              %span= current_user.full_name
+            %ul{ class: "dropdown-menu" }
               %li
-                %a{ href: "/users/#{session[:user_id]}/edit" }
+                %a{ href: "/users/edit" }
                   %span{ class: "glyphicon glyphicon-edit" } 
                   %span Edit your profile
               %li
-                %a{ href: "/auth/", data: {method: :delete} }
+                %a{ href: "/users/sign_out", data: {method: :delete} }
                   %span{ class: "glyphicon glyphicon-log-out" } 
                   %span Log out
-             
-          

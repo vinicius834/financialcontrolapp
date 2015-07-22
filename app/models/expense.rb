@@ -1,6 +1,7 @@
 class Expense < ActiveRecord::Base
   extend Functions
   belongs_to :user
+  validates :user_id, presence: true
   validates :value_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :description, presence: true, length: { in: 3..70 }
   validates :expiration_date, presence: true
@@ -8,17 +9,16 @@ class Expense < ActiveRecord::Base
   monetize :value_cents
 
   def self.find_expenses_by_range_dates(current_user, from, to)
-  
-    if (from.empty? && to.empty?)
-      []
-    elsif (!from.empty? && to.empty?)
-      current_user.expenses.where("expiration_date >= :from", 
+    return [] if (from.empty? && to.empty?)
+
+    if (!from.empty? && to.empty?)
+      current_user.expenses.where("expiration_date >= :from",
           { from: Date.parse(from) })
     elsif (from.empty? && !to.empty?)
-      current_user.expenses.where("expiration_date <= :to", 
+      current_user.expenses.where("expiration_date <= :to",
           { to: Date.parse(to) })
     else
-      current_user.expenses.where(expiration_date: date_range(from, to))  
+      current_user.expenses.where(expiration_date: date_range(from, to))
     end
   end
 

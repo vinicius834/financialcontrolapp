@@ -1,4 +1,5 @@
 class UserSessionsControllerTest < ActionController::TestCase
+=begin
   test "Must render new template." do
     get(:new)
     assert_template :new
@@ -25,4 +26,5 @@ class UserSessionsControllerTest < ActionController::TestCase
     delete(:destroy)
     assert_redirected_to new_user_sessions_path
   end
+=end
 end

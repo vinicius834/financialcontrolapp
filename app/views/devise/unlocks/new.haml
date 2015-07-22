@@ -1,0 +1,16 @@
+%div{ class: "users_div_form" }
+  %div{ class: "users_div_form_panel panel panel-default" }
+    %div{ class: "panel-heading" }
+      %h1{ class: "panel-title" } Resend unlock instructions
+    %div{ class: "panel-body" }
+      = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+
+        %div{ class: "form-group input-group" }
+          %span{ class: "input-group-addon" } @
+          = f.text_field(:email, type: "email", class: 'form-control', placeholder: 'Email', minlength: 5, maxlength: 70, required: true, autofocus: true)
+
+        %div{ class: "form-group" }
+          = f.submit(class: 'btn btn-default', value: "Resend unlock instructions")
+
+      = render "devise/shared/links"

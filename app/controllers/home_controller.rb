@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  before_action :require_authentication, only: [:index]
+  before_action :authenticate_user!
+
   def index
   	@incomes = current_user.incomes
     @expenses = current_user.expenses

@@ -1,25 +1,29 @@
-class UserMailer < ActionMailer::Base
-  default from: 'no-reply@financialcontrolapp.com'
-  
-  def confirmation_email(user)
-  	@user = user
-    @confirmation_link = confirmation_url({
-      token: @user.confirmation_token
-    })
-    mail({
-      to: user.email,
-      bcc: ['sign ups <signups@financialcontrolapp.com>'],
-      subject: 'Confirm email Financial Control App'
-    })  
+class UserMailer < Devise::Mailer #ActionMailer::Base
+  helper :application
+  include Devise::Controllers::UrlHelpers
+  default template_path: 'devise/mailer'
+
+  def headers_for(action, opts)
+        headers = {
+            :subject       => translate(devise_mapping, action),
+            :from          => mailer_sender(devise_mapping),
+            :to            => resource.email,
+            :template_path => 'devise/mailer'
+        }.merge(opts)
   end
-    
-  def password_reset(user) 
-    @user = user
-    @reset_link = edit_password_reset_url(@user.password_reset_token)
-    mail({
-      to: user.email,
-      bcc: ['password resets <passwordresets@financialcontrolapp.com>'],
-      subject: 'Password reset email'
-    }) 
-  end 
+
+  def confirmation_instructions(record, token, opts={})
+    opts[:subject] = translate('devise.mailer.confirmation_instructions.subject', :confirmation_instructions)
+    super
+  end
+
+  def reset_password_instructions(record, token, opts={})
+    opts[:subject] = translate('devise.mailer.reset_password_instructions.subject', :reset_password_instructions)
+    super
+  end
+
+  def unlock_instructions(record, token, opts={})
+    opts[:subject] = translate('devise.mailer.unlock_instructions.subject', :unlock_instructions)
+    super
+  end
 end

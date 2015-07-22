@@ -18,7 +18,10 @@
       #content.container-fluid
         - if notice.present?
           %div{ id: "notice", class: "alert alert-success" }
-            = flash[:notice]
+            = notice
+        - if alert.present?
+          %div{ id: "alert", class: "alert alert-danger error_explanation" }
+            = alert
         = yield
       #footer.bottom
         %div{ class: "horizontal-line" } 

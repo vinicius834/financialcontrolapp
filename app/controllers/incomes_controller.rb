@@ -1,8 +1,5 @@
 class IncomesController < ApplicationController
-  include CurrencyHelper
-  before_action :require_authentication, 
-    only: [:new, :create, :edit, :update, :destroy]
-    
+  before_action :authenticate_user!
   before_action only: [:create, :update] do
     income_params[:value] = format_value_to_save(income_params[:value])
   end

@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	incomes = current_user.incomes
+    incomes = current_user.incomes
     expenses = current_user.expenses
     @incomes = IncomePresenter.new(incomes, view_context)
     @expenses = ExpensePresenter.new(expenses, view_context)

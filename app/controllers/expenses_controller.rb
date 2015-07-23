@@ -33,8 +33,9 @@ class ExpensesController < ApplicationController
   def search_between_dates
     from = params[:from_date_expense]
     to = params[:to_date_expense]
-    @expenses = Expense.find_expenses_by_range_dates(current_user, from, to)
-    $total_expenses = Expense.expenses_total_calculate(@expenses)
+    expenses_searched = Expense.find_expenses_by_range_dates(current_user, from, to)
+    @expenses = ExpensePresenter.new(expenses_searched, view_context)
+    $total_expenses = Expense.expenses_total_calculate(expenses_searched)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :search_between_dates}
@@ -42,8 +43,9 @@ class ExpensesController < ApplicationController
   end
 
   def all
-    @expenses = current_user.expenses 
-    $total_expenses = Expense.expenses_total_calculate(@expenses)
+    all_expenses = current_user.expenses 
+    @expenses = ExpensePresenter.new(all_expenses, view_context)
+    $total_expenses = Expense.expenses_total_calculate(all_expenses)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :all}

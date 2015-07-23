@@ -31,8 +31,9 @@ class IncomesController < ApplicationController
   def search_between_dates
     from = params[:from_date_income]
     to = params[:to_date_income] 
-    @incomes =  Income.find_incomes_by_range_dates(current_user, from, to)
-    $total_incomes = Income.incomes_total_calculate(@incomes)
+    incomes_searched =  Income.find_incomes_by_range_dates(current_user, from, to)
+    @incomes = IncomePresenter.new(incomes_searched, view_context)
+    $total_incomes = Income.incomes_total_calculate(incomes_searched)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :search_between_dates}
@@ -40,8 +41,9 @@ class IncomesController < ApplicationController
   end
 
   def all
-    @incomes = current_user.incomes 
-    $total_incomes = Income.incomes_total_calculate(@incomes)
+    incomes = current_user.incomes
+    @incomes = IncomePresenter.new(incomes, view_context)
+    $total_incomes = Income.incomes_total_calculate(incomes)
     @balance = calulate_balance($total_incomes, $total_expenses)
     respond_to do |format|
       format.js {render :all}
